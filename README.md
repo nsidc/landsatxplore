@@ -3,6 +3,9 @@
 [![codecov](https://codecov.io/gh/yannforget/landsatxplore/branch/master/graph/badge.svg?token=NwVo09Edur)](https://codecov.io/gh/yannforget/landsatxplore)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1291422.svg)](https://zenodo.org/record/4543601)
 
+# Fork of landsatexplore to fix bug which prevents download of older data
+Due to hardcoded download links, when downloading older C2-L2 data an error is raised: `landsatxplore.errors.EarthExplorerError: Download is not available`. This is documented [here](https://github.com/yannforget/landsatxplore/issues/42) and [here](https://github.com/yannforget/landsatxplore/issues/45) and a solution is proposed. This solution is implemented in this fork with the aim to make the fixed package available to download until a permanent solution is introduced by the original author(s) of landsatxplore.
+
 # Description
 
 ![CLI Demo](https://raw.githubusercontent.com/yannforget/landsatxplore/master/demo.gif?s=0.5)
