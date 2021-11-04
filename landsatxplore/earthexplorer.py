@@ -157,12 +157,12 @@ class EarthExplorer(object):
             entity_id = self.api.get_entity_id(identifier, dataset)
         else:
             entity_id = identifier
-            try:
-                url = EE_DOWNLOAD_URL.format(data_product_id=DATA_PRODUCTS[dataset], entity_id=entity_id)
-                filename = self._download(url, output_dir, timeout=timeout, skip=skip)
-            except:
-                url = EE_DOWNLOAD_URL.format(data_product_id=DATA_PRODUCTS_II[dataset], entity_id=entity_id)
-                filename = self._download(url, output_dir, timeout=timeout, skip=skip)
+        try:
+            url = EE_DOWNLOAD_URL.format(data_product_id=DATA_PRODUCTS[dataset], entity_id=entity_id)
+            filename = self._download(url, output_dir, timeout=timeout, skip=skip)
+        except:
+            url = EE_DOWNLOAD_URL.format(data_product_id=DATA_PRODUCTS_II[dataset], entity_id=entity_id)
+            filename = self._download(url, output_dir, timeout=timeout, skip=skip)
         
         # Original code
         #url = EE_DOWNLOAD_URL.format(
