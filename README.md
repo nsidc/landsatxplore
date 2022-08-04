@@ -8,6 +8,8 @@ Due to hardcoded download links, when downloading older C2-L2 data an error is r
 
 *Another fix implemented:* In the beginning another error regarding the log-in tokens on Earth Explorer was discovered and [described](https://github.com/yannforget/landsatxplore/issues/76). The user was able to solve the issue by changing some lines in the [earthexplorer.py](https://github.com/yannforget/landsatxplore/pull/75/files). This fix is also nor implemented in this fork. As of now (April 2022) the fix has yet to be merged into the original landsatxplore by the original author(s).
 
+*Added compatability for Landsat 9 C2L2:* Compatability for the download of LS9 C2L2 was implemented as proposed by "faendeg" in [this pull request](https://github.com/yannforget/landsatxplore/pull/69).
+
 ## Installation of landsatxplore_fix
 Delete any previous installation of landsatxplore using ``pip uninstall landsatxplore``.
 
