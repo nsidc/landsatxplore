@@ -212,6 +212,8 @@ class API(object):
         start_date=None,
         end_date=None,
         months=None,
+        wrs_path=None,
+        wrs_row=None, 
         max_results=100,
     ):
         """Search for scenes.
@@ -234,6 +236,10 @@ class API(object):
             YYYY-MM-DD. Equal to start_date if not provided.
         months : list of int, optional
             Limit results to specific months (1-12).
+        wrs_path : int, optional
+            Limit results to the WRS path of interest.
+        wrs_row : int, optional
+            Limit results to the WRS row of interest.
         max_results : int, optional
             Max. number of results. Defaults to 100.
 
@@ -242,6 +248,21 @@ class API(object):
         scenes : list of dict
             Matching scenes as a list of dict containing metadata.
         """
+
+        if wrs_path and wrs_row:
+            latitude, longitude, bbox = None, None, None
+            r = self.request(
+                "grid2ll",
+                params={
+                    "gridType":"WRS2",
+                    "path":wrs_path,
+                    "row":wrs_row,
+                    "responseShape": "point",
+                },
+            )
+            longitude = r['coordinates'][0]['longitude']
+            latitude = r['coordinates'][0]['latitude']
+        
         spatial_filter = None
         if longitude and latitude:
             spatial_filter = SpatialFilterMbr(*Point(longitude, latitude).bounds)
@@ -271,7 +292,13 @@ class API(object):
                 "metadataType": "full",
             },
         )
-        return [_parse_metadata(scene) for scene in r.get("results")]
+        scenes = [_parse_metadata(scene) for scene in r.get("results")]
+        if wrs_path and wrs_row:
+            return [scene for scene in scenes if
+                    wrs_path == scene['wrs_path']
+                    and wrs_row == scene['wrs_row']]
+        else:
+            return scenes
 
 
 def _random_string(length=10):
