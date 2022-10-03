@@ -60,6 +60,13 @@ def cli():
     help="Point of interest (latitude, longitude).",
 )
 @click.option(
+    "-PR",
+    "--pathrow",
+    type=click.INT,
+    nargs=2,
+    help="Path and row (path, row).",
+)
+@click.option(
     "-b",
     "--bbox",
     type=click.FLOAT,
@@ -78,7 +85,7 @@ def cli():
 )
 @click.option("-m", "--limit", type=click.INT, help="Max. results returned.")
 def search(
-    username, password, dataset, location, bbox, clouds, start, end, output, limit
+        username, password, dataset, location, pathrow, bbox, clouds, start, end, output, limit
 ):
     """Search for scenes."""
     api = API(username, password)
@@ -87,6 +94,9 @@ def search(
     if location:
         latitude, longitude = location
         where.update(latitude=latitude, longitude=longitude)
+    if pathrow:
+        path, row = pathrow
+        where.update(wrs_path=path, wrs_row=row)
     if bbox:
         where.update(bbox=bbox)
     if clouds:
@@ -97,6 +107,9 @@ def search(
         where.update(end_date=end)
     if limit:
         where.update(max_results=limit)
+
+    if pathrow and (location or bbox):
+        raise LandsatxploreError(f"pathrow mutually exclusive with location or bbox.")
 
     results = api.search(**where)
     api.logout()

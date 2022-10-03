@@ -154,6 +154,18 @@ def test_api_search(ee_api):
     assert len(scenes) >= 1
     assert "cloud_cover" in scenes[0]
 
+    # path and row
+    scenes = ee_api.search(
+        "landsat_8_c1",
+        wrs_path=34,
+        wrs_row=32,
+        start_date="2020-01-20",
+        end_date="2020-01-31",
+        max_results=5,
+    )
+    assert len(scenes) == 1
+    assert scenes[0]['landsat_product_id'] == 'LC08_L1TP_034032_20200124_20200128_01_T1'
+
     # Bounding box
     scenes = ee_api.search(
         "landsat_8_c1",

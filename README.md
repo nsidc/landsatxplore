@@ -10,10 +10,12 @@ Due to hardcoded download links, when downloading older C2-L2 data an error is r
 
 *Added compatability for Landsat 9 C2L2:* Compatability for the download of LS9 C2L2 was implemented as proposed by "faendeg" in [this pull request](https://github.com/yannforget/landsatxplore/pull/69).
 
+*Added path and row search option:* See https://github.com/yannforget/landsatxplore/issues/43
+
 ## Installation of landsatxplore_fix
 Delete any previous installation of landsatxplore using ``pip uninstall landsatxplore``.
 
-Install the fixed version using ``pip install git+https://github.com/WortalMombat/landsatxplore_fix.git``
+Install the fixed version using ``pip install git+https://github.com/nsidc/landsatxplore_fix.git``
 
 # Description
 
@@ -121,6 +123,7 @@ Options:
   -d, --dataset [landsat_tm_c1|landsat_etm_c1|landsat_8_c1|landsat_tm_c2_l1|landsat_tm_c2_l2|landsat_etm_c2_l1|landsat_etm_c2_l2|landsat_ot_c2_l1|landsat_ot_c2_l2|sentinel_2a]
                                   Landsat data set.
   -l, --location FLOAT...         Point of interest (latitude, longitude).
+  -PR, --pathrow INTEGER...       Path and row (path, row).
   -b, --bbox FLOAT...             Bounding box (xmin, ymin, xmax, ymax).
   -c, --clouds INTEGER            Max. cloud cover (1-100).
   -s, --start TEXT                Start date (YYYY-MM-DD).
