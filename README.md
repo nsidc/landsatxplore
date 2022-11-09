@@ -15,7 +15,7 @@ Due to hardcoded download links, when downloading older C2-L2 data an error is r
 ## Installation of landsatxplore_fix
 Delete any previous installation of landsatxplore using ``pip uninstall landsatxplore``.
 
-Install the fixed version using ``pip install git+https://github.com/nsidc/landsatxplore_fix.git``
+Install the fixed version using ``pip install git+https://github.com/nsidc/landsatxplore.git``
 
 # Description
 
